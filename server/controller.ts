@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { broadcast } from '../src/broadcast';
+import { broadcast } from './broadcast';
 
 interface Message {
   content: string;
@@ -30,19 +30,8 @@ function newMessage(req: express.Request, res: express.Response) {
   res.send(rooms);
 }
 
-// function getMessages(req: express.Request, res: express.Response) {
-//   res.send(messages);
-// }
-
-function joinRoom(req: express.Request, res: express.Response) {
-  const roomCode = req.body.roomCode;
-  const username = req.body.username; 
-  res.send('gg');
-}
-
-
 function index(req: express.Request, res: express.Response) {
   res.send('hello world');
 }
 
-export default {index, newMessage, joinRoom};
+export default {index, newMessage};
