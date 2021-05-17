@@ -17,7 +17,7 @@ const RoomInput = () => {
   }
 
   return (
-    <div>
+    <form>
       <h1>Chat room</h1>
       <div className="form-group">
         <label className="">Username</label>
@@ -40,7 +40,7 @@ const RoomInput = () => {
       <button onClick={joinRoom} className="btn btn-primary mt-2">
         Join room
       </button>
-    </div>
+    </form>
   );
 };
 

@@ -69,12 +69,12 @@ const Room = () => {
           const newUsers = [...currentUsers];
           return newUsers.filter((user) => user !== obj.username);
         });
-        console.log("ended");
+        // console.log("ended");
       });
 
       socket.on("typingStarted", (obj) => {
         // console.log(message);
-        console.log(obj);
+        // console.log(obj);
         setTypingUsers((currentUsers: string[]) => {
           if (!currentUsers.includes(obj.username)) {
             return [...currentUsers, obj.username];
@@ -128,7 +128,7 @@ const Room = () => {
       </div>
       <div className="fixed-bottom mb-5 container">
         <div className="text-center">{usersTyping()}</div>
-        <div className="form-group d-flex">
+        <form className="form-group d-flex">
           <input
             type="text"
             className="form-control"
@@ -140,10 +140,14 @@ const Room = () => {
               setMessage(e.target.value);
             }}
           />
-          <button className="btn btn-primary" onClick={sendMessage}>
+          <button
+            className="btn btn-primary"
+            type="submit"
+            onClick={sendMessage}
+          >
             Submit
           </button>
-        </div>
+        </form>
       </div>
     </div>
   );
