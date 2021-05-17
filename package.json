@@ -29,8 +29,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "compile": "tsc server/server.ts --outDir build",
-    "start": "node build/server.js",
+    "compile": "tsc server/server.ts --outDir serverbuild",
+    "start": "node serverbuild/server.js",
     "startpage": "react-scripts start",
     "server": "nodemon server/server.ts",
     "build": "react-scripts build",
