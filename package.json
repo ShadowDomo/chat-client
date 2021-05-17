@@ -30,8 +30,8 @@
   },
   "scripts": {
     "compile": "tsc server/server.ts --outDir build",
-    "startServer": "node build/server.js",
-    "start": "react-scripts start",
+    "start": "node build/server.js",
+    "startpage": "react-scripts start",
     "server": "nodemon server/server.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
