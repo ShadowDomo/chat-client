@@ -24,7 +24,7 @@ var io = require('socket.io')(httpServer, {
         origin: [
             'http://syndeyforum-env.eba-f4xyppqy.ap-southeast-2.elasticbeanstalk.com/',
             'http://localhost:3000',
-            'http://192.168.1.107',
+            'http://domz.me/',
         ],
         methods: ['GET', 'POST']
     }
