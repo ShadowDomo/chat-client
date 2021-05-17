@@ -1,24 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import RoomInput from "./RoomInput";
+import Room from "./Room";
+import { DetailsContext } from "./DetailsContext";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
+  const [username, setUsername] = useState<string>("");
+  const [roomCode, setRoomCode] = useState<string>("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="App container pt-5">
+      <Router>
+        <DetailsContext.Provider
+          value={{
+            usernames: [username, setUsername],
+            room: [roomCode, setRoomCode],
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <Switch>
+            <Route path="/room">
+              <Room />
+            </Route>
+            <Route path="/">
+              <RoomInput />
+            </Route>
+          </Switch>
+        </DetailsContext.Provider>
+      </Router>
     </div>
   );
 }
