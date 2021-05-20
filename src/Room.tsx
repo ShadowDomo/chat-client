@@ -3,6 +3,7 @@ import { useState, useEffect, useContext, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { DetailsContext } from "./DetailsContext";
 import Message from "./Message";
+import "./CSS/room.css";
 
 const SOCKET_SERVER: any = process.env.REACT_APP_SOCKET_SERVER;
 
@@ -27,9 +28,9 @@ const Room = () => {
   function addMessage(message: MessageObject) {
     setMessages((currentMessages) => {
       const newMessages = [...currentMessages];
-      if (newMessages.length > 9) {
-        newMessages.shift();
-      }
+      // if (newMessages.length > 9) {
+      //   newMessages.shift();
+      // }
 
       newMessages.push(message);
       return newMessages;
@@ -93,7 +94,8 @@ const Room = () => {
     emptyDiv.current.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  function sendMessage() {
+  function sendMessage(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
     setMessage("");
     socket.emit("message", {
       content: message,
@@ -102,6 +104,7 @@ const Room = () => {
   }
 
   function typing() {
+    // emptyDiv.current.scrollIntoView({ behavior: "smooth" });
     socket.emit("typing", { username: username });
   }
 
@@ -111,24 +114,39 @@ const Room = () => {
     }
 
     if (typingUsers.length === 1) {
-      return <small>{typingUsers.toString()} is typing...</small>;
+      return <small className="">{typingUsers.toString()} is typing...</small>;
     }
 
-    return <small>{typingUsers.join(", ")} are typing...</small>;
+    return (
+      <small className="mb-2">{typingUsers.join(", ")} are typing...</small>
+    );
   }
 
   return (
-    <div className="d-flex flex-column h-75 container">
-      <h1 className="row">Chat room</h1>
-      <div className="row overflow-auto" style={{ maxHeight: "70vh" }}>
-        {messages.map((message, index) => (
-          <Message key={index} message={message} />
-        ))}
+    <div className="d-flex flex-column container overflow-auto">
+      <h1 className="row mt-5">Chat room - {roomCode}</h1>
+      <div
+        className="row overflow-auto"
+        style={{
+          maxHeight: "76vh",
+          marginBottom: "120px",
+        }}
+      >
+        <div className="col ">
+          {messages.map((message, index) => (
+            <Message
+              key={index}
+              prevMessage={index > 0 ? messages[index - 1] : null}
+              message={message}
+              userUsername={username}
+            />
+          ))}
+        </div>
         <div ref={emptyDiv}></div>
       </div>
       <div className="fixed-bottom mb-5 container">
         <div className="text-center">{usersTyping()}</div>
-        <form className="form-group d-flex">
+        <form className="form-group d-flex mt-1">
           <input
             type="text"
             className="form-control"
@@ -143,7 +161,7 @@ const Room = () => {
           <button
             className="btn btn-primary"
             type="submit"
-            onClick={sendMessage}
+            onClick={(e) => sendMessage(e)}
           >
             Submit
           </button>
