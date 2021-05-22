@@ -74,7 +74,7 @@ const Message = ({ message, userUsername, prevMessage }: Props) => {
               borderRadius: borderRadius,
             }}
           >
-            <p className={`${textColor} mb-0 `}>{message.content}</p>
+            <p className={`${textColor} mb-0 text-break`}>{message.content}</p>
           </div>
         </div>
       </div>
