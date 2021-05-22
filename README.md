@@ -10,6 +10,7 @@ Visit [Chat Room](http://domz.me/chat-client) to see it in action
 
 * Join a room with a room-code.
 * Chat with whoever else is in the room.
+* Hover over message to see time posted.
 
 ## To Do
 * Reply to previous messages
