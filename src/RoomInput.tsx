@@ -17,7 +17,7 @@ const RoomInput = () => {
   }
 
   return (
-    <form>
+    <form className="container mt-4">
       <h1>Chat room</h1>
       <div className="form-group">
         <label className="">Username</label>

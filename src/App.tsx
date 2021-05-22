@@ -9,7 +9,7 @@ function App() {
   const [roomCode, setRoomCode] = useState<string>("");
 
   return (
-    <div className="App container">
+    <div className="App ">
       <Router>
         <DetailsContext.Provider
           value={{
